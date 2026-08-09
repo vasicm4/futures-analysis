@@ -114,15 +114,6 @@ Run all cells top-to-bottom. The first execution of cell 9 will download ~10 yea
 
 ---
 
-## Notes & known issues
-
-- **Negative WTI price on 2020-04-20**: WTI crude futures settled at -$37.63 on that date during the COVID-19 demand collapse. This is real market data, not a corruption. The notebook filters non-positive prices before taking `np.log` in cell 9, so the analysis runs without warnings. The cell-1 path uses `.where(... > 0).dropna()` consistently.
-- **yfinance multi-ticker shape**: recent versions of `yfinance` return a DataFrame with MultiIndex columns even for a single-ticker download. The notebook handles this with `if isinstance(df, pd.DataFrame): df = df.iloc[:, 0]` guards.
-- **`prices.csv` cache**: contains 2518 daily rows for the three tickers. Delete it to force a re-download.
-- **Unimplemented task part**: GARCH(1,1) identification (point 6 of the original task) is not done; the notebook stops at AR(1) and Random Walk modeling.
-
----
-
 ## References
 
 - `zadatak.md` — original assignment (Serbian)
